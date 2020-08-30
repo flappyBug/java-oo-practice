@@ -31,4 +31,8 @@ public class Trend implements Comparable<Trend> {
     public int compareTo(Trend o) {
         return votes - o.votes;
     }
+
+    public String display() {
+        return String.format("%s\t%d", name, votes);
+    }
 }

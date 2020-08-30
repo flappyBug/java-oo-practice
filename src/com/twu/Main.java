@@ -32,10 +32,16 @@ public class Main {
 
             switch (action) {
                 case ACT_PRINT:
+                    System.out.println(trendsBoard.display());
+                    break;
                 case ACT_VOTE:
                 case ACT_BIDDING:
-                case ACT_ADD:
                     throw new UnsupportedOperationException("Not implemented, yet");
+                case ACT_ADD:
+                    System.out.println("请输入热搜名称：");
+                    String name = scanner.nextLine().trim();
+                    trendsBoard.addTrending(name);
+                    break;
                 case ACT_QUIT:
                     quit = true;
                     break;

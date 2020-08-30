@@ -15,4 +15,8 @@ public class TrendsBoard {
     public List<Trend> getOrderedTrends() {
         return this.trends.stream().sorted().collect(Collectors.toList());
     }
+
+    public String display() {
+        return getOrderedTrends().stream().map(Trend::display).collect(Collectors.joining("\n"));
+    }
 }
