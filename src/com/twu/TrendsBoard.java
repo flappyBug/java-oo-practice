@@ -19,12 +19,7 @@ public class TrendsBoard {
         return getOrderedTrends().map(Trend::display).collect(Collectors.joining("\n"));
     }
 
-    public boolean voteFor(String name, int votes) {
-        Trend trend = trends.get(name);
-        if (trend == null) {
-            return false;
-        }
-        trend.vote(votes);
-        return true;
+    public Trend getTrendByName(String name) {
+        return trends.get(name);
     }
 }

@@ -37,23 +37,21 @@ public class Main {
                     break;
                 case ACT_VOTE:
                     System.out.println("请输入你要投票的热搜名称：");
-                    String voteName = scanner.nextLine().trim();
-                    System.out.println("请输入你要投的票数：（你目前还有" + votesRemain + "票)");
-                    int votes = 0;
-                    boolean success = true;
-                    try {
-                        votes = Integer.parseInt(scanner.nextLine());
-                        if (votes > votesRemain) {
-                            success = false;
-                        }
-                    } catch (NumberFormatException e) {
-                        success = false;
+                    String trendName = scanner.nextLine().trim();
+                    Trend trend = trendsBoard.getTrendByName(trendName);
+                    if (trend == null) {
+                        System.out.println("投票失败：无此热搜");
+                        break;
                     }
-                    if (success) {
-                        trendsBoard.voteFor(voteName, votes);
-                        votesRemain -= votes;
-                        System.out.println("投票成功");
-                    } else {
+                    System.out.println("请输入你要投的票数：（你目前还有" + votesRemain + "票)");
+                    try {
+                        int votes = Integer.parseInt(scanner.nextLine());
+                        if (votes > votesRemain || votes <= 0) {
+                            System.out.println("投票失败");
+                            break;
+                        }
+                        trend.vote(votes);
+                    } catch (NumberFormatException e) {
                         System.out.println("投票失败");
                     }
                     break;
