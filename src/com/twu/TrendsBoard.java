@@ -1,22 +1,30 @@
 package com.twu;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TrendsBoard {
-    private final Set<Trend> trends = new HashSet<>();
+    private final Map<String, Trend> trends = new HashMap<>();
 
     public void addTrending(String name) {
-        this.trends.add(new Trend(name));
+        this.trends.put(name, new Trend(name));
     }
 
-    public List<Trend> getOrderedTrends() {
-        return this.trends.stream().sorted().collect(Collectors.toList());
+    public Stream<Trend> getOrderedTrends() {
+        return this.trends.values().stream().sorted(Comparator.reverseOrder());
     }
 
     public String display() {
-        return getOrderedTrends().stream().map(Trend::display).collect(Collectors.joining("\n"));
+        return getOrderedTrends().map(Trend::display).collect(Collectors.joining("\n"));
+    }
+
+    public boolean voteFor(String name, int votes) {
+        Trend trend = trends.get(name);
+        if (trend == null) {
+            return false;
+        }
+        trend.vote(votes);
+        return true;
     }
 }

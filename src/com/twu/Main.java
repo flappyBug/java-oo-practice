@@ -13,6 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         TrendsBoard trendsBoard = new TrendsBoard();
+        int votesRemain = 10;
         boolean quit = false;
         final String options = "1. 查看热搜排行榜\n" +
                 "2. 给热搜事件投票\n" +
@@ -35,12 +36,34 @@ public class Main {
                     System.out.println(trendsBoard.display());
                     break;
                 case ACT_VOTE:
+                    System.out.println("请输入你要投票的热搜名称：");
+                    String voteName = scanner.nextLine().trim();
+                    System.out.println("请输入你要投的票数：（你目前还有" + votesRemain + "票)");
+                    int votes = 0;
+                    boolean success = true;
+                    try {
+                        votes = Integer.parseInt(scanner.nextLine());
+                        if (votes > votesRemain) {
+                            success = false;
+                        }
+                    } catch (NumberFormatException e) {
+                        success = false;
+                    }
+                    if (success) {
+                        trendsBoard.voteFor(voteName, votes);
+                        votesRemain -= votes;
+                        System.out.println("投票成功");
+                    } else {
+                        System.out.println("投票失败");
+                    }
+                    break;
                 case ACT_BIDDING:
                     throw new UnsupportedOperationException("Not implemented, yet");
                 case ACT_ADD:
-                    System.out.println("请输入热搜名称：");
+                    System.out.println("请输入你要添加的热搜事件的名字：");
                     String name = scanner.nextLine().trim();
                     trendsBoard.addTrending(name);
+                    System.out.println("添加成功");
                     break;
                 case ACT_QUIT:
                     quit = true;
