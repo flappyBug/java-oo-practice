@@ -12,7 +12,7 @@ public class Main {
 
 
     public static void main(String[] args) {
-        TrendsBoard trendsBoard = new TrendsBoard();
+        TrendBoard trendBoard = new TrendBoard();
         int votesRemain = 10;
         boolean quit = false;
         final String options = "1. 查看热搜排行榜\n" +
@@ -33,12 +33,12 @@ public class Main {
 
             switch (action) {
                 case ACT_PRINT:
-                    System.out.println(trendsBoard.display());
+                    System.out.println(trendBoard.display());
                     break;
                 case ACT_VOTE:
                     System.out.println("请输入你要投票的热搜名称：");
                     String trendName = scanner.nextLine().trim();
-                    Trend trend = trendsBoard.getTrendByName(trendName);
+                    Trend trend = trendBoard.getTrendByName(trendName);
                     if (trend == null) {
                         System.out.println("投票失败：无此热搜");
                         break;
@@ -60,7 +60,7 @@ public class Main {
                 case ACT_ADD:
                     System.out.println("请输入你要添加的热搜事件的名字：");
                     String name = scanner.nextLine().trim();
-                    trendsBoard.addTrending(name);
+                    trendBoard.addTrending(name);
                     System.out.println("添加成功");
                     break;
                 case ACT_QUIT:

@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class TrendsBoard {
+public class TrendBoard {
     private final Map<String, Trend> trends = new HashMap<>();
 
     public void addTrending(String name) {
