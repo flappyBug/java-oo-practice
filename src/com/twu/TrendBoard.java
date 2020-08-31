@@ -6,6 +6,11 @@ import java.util.stream.Stream;
 
 public class TrendBoard {
     private final Map<String, Trend> trends = new HashMap<>();
+    private static final TrendBoard instance = new TrendBoard();
+
+    public static TrendBoard getInstance() {
+        return instance;
+    }
 
     public void addTrending(String name) {
         this.trends.put(name, new Trend(name));

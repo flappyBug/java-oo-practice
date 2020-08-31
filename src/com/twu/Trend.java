@@ -3,7 +3,7 @@ package com.twu;
 import java.util.Objects;
 
 public class Trend implements Comparable<Trend> {
-    private String name;
+    private final String name;
     private int votes = 0;
 
     Trend(String name) {

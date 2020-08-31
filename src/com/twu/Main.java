@@ -12,9 +12,10 @@ public class Main {
 
 
     public static void main(String[] args) {
-        TrendBoard trendBoard = new TrendBoard();
+        TrendBoard trendBoard = TrendBoard.getInstance();
         int votesRemain = 10;
         boolean quit = false;
+
         final String options = "1. 查看热搜排行榜\n" +
                 "2. 给热搜事件投票\n" +
                 "3. 购买热搜\n" +
