@@ -10,7 +10,7 @@ public class Trend implements Comparable<Trend> {
         this.name = name;
     }
 
-    void vote(int votes) {
+    public void vote(int votes) {
         this.votes += votes;
     }
 

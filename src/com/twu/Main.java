@@ -52,6 +52,7 @@ public class Main {
                             break;
                         }
                         trend.vote(votes);
+                        votesRemain -= votes;
                     } catch (NumberFormatException e) {
                         System.out.println("投票失败");
                     }
