@@ -6,7 +6,11 @@ public class Main {
 
     public static void main(String[] args) {
         Session session = Session.getInstance();
-        session.printMenu();
+        //noinspection InfiniteLoopStatement
+        while (true) {
+            session.chooseAction();
+        }
+//        getInstance();
 //        TrendBoard trendBoard = TrendBoard.getInstance();
 //        int votesRemain = 10;
 //        boolean quit = false;
