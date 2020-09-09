@@ -5,7 +5,7 @@ public class Main {
 
 
     public static void main(String[] args) {
-        Session session = Session.getInstance();
+        Session session = new Session();
         //noinspection InfiniteLoopStatement
         while (true) {
             session.chooseAction();

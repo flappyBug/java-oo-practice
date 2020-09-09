@@ -7,7 +7,11 @@ import com.twu.user.User;
 
 public class UserLoginAction implements Action {
     private static final String name = "用户";
+    private final Session session;
     private static final UserRepository userRepository = UserRepository.getInstance();
+    public UserLoginAction(Session session) {
+        this.session = session;
+    }
     public String getName() {
         return name;
     }
@@ -17,7 +21,6 @@ public class UserLoginAction implements Action {
         //UserRepository::login will always return a User
         //noinspection OptionalGetWithoutIsPresent
         User user = (User) userRepository.login().get();
-        Session session = Session.getInstance();
         session.setRole(user);
         session.pushMenu(new UserMenu());
         return true;

@@ -7,18 +7,13 @@ import com.twu.user.Role;
 import java.util.Stack;
 
 public class Session {
-    private static final Session instance = new Session();
     private Role role;
     private final TrendBoard trendBoard;
     private final Stack<Menu> menuStack = new Stack<>();
 
-    private Session() {
+    public Session() {
         trendBoard = TrendBoard.getInstance();
-        pushMenu(new LoginMenu());
-    }
-
-    public static Session getInstance() {
-        return instance;
+        pushMenu(new LoginMenu(this));
     }
 
     public Role getRole() {
