@@ -22,7 +22,7 @@ public class UserLoginAction implements Action {
         //noinspection OptionalGetWithoutIsPresent
         User user = (User) userRepository.login().get();
         session.setRole(user);
-        session.pushMenu(new UserMenu());
+        session.pushMenu(new UserMenu(session));
         return true;
     }
 }

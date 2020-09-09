@@ -10,7 +10,7 @@ public class LoginMenu extends Menu {
         super(new Action[]{
                 new AdminLoginAction(),
                 new UserLoginAction(session),
-                new QuitAction(),
+                new QuitAction(session),
         });
     }
 }
