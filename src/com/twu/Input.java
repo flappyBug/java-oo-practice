@@ -59,4 +59,8 @@ public final class Input {
         }
         return line;
     }
+
+    public String getStringUntrimmed() {
+        return scanner.nextLine();
+    }
 }
