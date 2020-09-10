@@ -10,7 +10,7 @@ public class UserMenu extends Menu{
         super(new Action[]{
                 new PrintAction(session),
                 new VoteAction(session),
-                new BidAction(),
+                new BidAction(session),
                 new AddTrendAction(session),
                 new QuitAction(session)
         });

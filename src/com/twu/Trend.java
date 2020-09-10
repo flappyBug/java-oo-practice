@@ -19,12 +19,12 @@ public class Trend implements Comparable<Trend> {
         if (this == o) return true;
         if (!(o instanceof Trend)) return false;
         Trend trend = (Trend) o;
-        return name.equals(trend.name);
+        return name.equalsIgnoreCase(trend.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name.toLowerCase());
     }
 
     @Override
@@ -34,5 +34,9 @@ public class Trend implements Comparable<Trend> {
 
     public String display() {
         return String.format("%s\t%d", name, votes);
+    }
+
+    public String getName() {
+        return name;
     }
 }
