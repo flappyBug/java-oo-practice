@@ -1,6 +1,8 @@
 package com.twu;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -12,11 +14,11 @@ public class TrendBoard {
         return instance;
     }
 
-    public boolean addTrend(String name) {
+    public boolean addTrend(String name, boolean isSuper) {
         if (trends.containsKey(name)) {
             return false;
         }
-        trends.put(name, new Trend(name));
+        trends.put(name, isSuper ? new SuperTrend(name) : new Trend(name));
         return true;
     }
 
