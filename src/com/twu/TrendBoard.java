@@ -1,11 +1,7 @@
 package com.twu;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class TrendBoard {
     private final Map<String, Trend> trends = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
@@ -27,12 +23,36 @@ public class TrendBoard {
         return true;
     }
 
-    public Stream<Trend> getOrderedTrends() {
-        return this.trends.values().stream().sorted(Comparator.reverseOrder());
+    public List<Trend> getRankedTrends() {
+        int maxRank = trends.size();
+        List<Trend> rankedTrends = new ArrayList<>(trends.size());
+        Map<Trend, Integer> invertedMap = biddingTrends.inverse();
+        Iterator<Trend> orderedFreeTrends = trends.values().stream()
+                .filter(trend -> !invertedMap.containsKey(trend))
+                .sorted(Comparator.reverseOrder()).iterator();
+        Iterator<Trend> orderedOutOfRankBiddingTrends = biddingTrends.values().stream()
+                .filter(trend -> invertedMap.get(trend) > maxRank)
+                .sorted(Comparator.reverseOrder()).iterator();
+
+        for (int rank = 1; rank <= trends.size(); rank++) {
+            Trend nextTrend = biddingTrends.get(rank);
+            if (nextTrend != null) {
+                rankedTrends.add(nextTrend);
+                continue;
+            }
+            if (!orderedFreeTrends.hasNext()) {
+                break;
+            }
+            rankedTrends.add(orderedFreeTrends.next());
+        }
+        while (orderedOutOfRankBiddingTrends.hasNext()) {
+            rankedTrends.add(orderedOutOfRankBiddingTrends.next());
+        }
+        return rankedTrends;
     }
 
     public String display() {
-        return getOrderedTrends().map(Trend::display).collect(Collectors.joining("\n"));
+        return getRankedTrends().stream().map(Trend::display).collect(Collectors.joining("\n"));
     }
 
     public Trend getTrendByName(String name) {
