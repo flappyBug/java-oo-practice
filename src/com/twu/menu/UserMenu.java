@@ -7,8 +7,8 @@ public class UserMenu extends Menu{
 
     public UserMenu(Session session) {
         super(new Action[]{
-                new PrintAction(),
-                new VoteAction(),
+                new PrintAction(session),
+                new VoteAction(session),
                 new BidAction(),
                 new AddTrendAction(session),
                 new QuitAction(session)
