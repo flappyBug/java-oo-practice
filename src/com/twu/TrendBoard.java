@@ -5,15 +5,19 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class TrendBoard {
-    private final Map<String, Trend> trends = new HashMap<>();
+    private final Map<String, Trend> trends = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
     private static final TrendBoard instance = new TrendBoard();
 
     public static TrendBoard getInstance() {
         return instance;
     }
 
-    public void addTrending(String name) {
-        this.trends.put(name, new Trend(name));
+    public boolean addTrend(String name) {
+        if (trends.containsKey(name)) {
+            return false;
+        }
+        trends.put(name, new Trend(name));
+        return true;
     }
 
     public Stream<Trend> getOrderedTrends() {

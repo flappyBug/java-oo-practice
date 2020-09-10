@@ -43,4 +43,8 @@ public class Session {
         currentMenu.printMenu();
         currentMenu.chooseAction();
     }
+
+    public TrendBoard getTrendBoard() {
+        return trendBoard;
+    }
 }
