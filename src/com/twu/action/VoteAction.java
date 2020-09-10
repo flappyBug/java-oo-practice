@@ -3,7 +3,6 @@ package com.twu.action;
 import com.twu.Input;
 import com.twu.Session;
 import com.twu.Trend;
-import com.twu.TrendBoard;
 import com.twu.user.User;
 
 import java.util.Optional;

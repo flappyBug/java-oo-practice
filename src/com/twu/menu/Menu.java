@@ -22,7 +22,7 @@ public abstract class Menu {
 
     public void chooseAction() {
         Input input = Input.getInstance();
-        String errPrompt = String.format("请输入不大于%d的正整数所谓命令索引\n", actions.length);
+        String errPrompt = String.format("请输入不大于%d的正整数作为命令索引\n", actions.length);
         Integer index = input.getIntegerUntilSuccess(errPrompt, errPrompt, errPrompt,
                 num -> num > 0 && num <= actions.length);
         actions[index - 1].execute();
