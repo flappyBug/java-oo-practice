@@ -26,7 +26,6 @@ public class Session {
 
     public void pushMenu(Menu menu) {
         menuStack.push(menu);
-        menu.printWelcomeMessage();
     }
 
     public void popMenu() {
@@ -35,11 +34,11 @@ public class Session {
             System.out.println("再见！");
             System.exit(0);
         }
-        menuStack.peek().printWelcomeMessage();
     }
 
     public void chooseAction() {
         Menu currentMenu = menuStack.peek();
+        currentMenu.printWelcomeMessage();
         currentMenu.printMenu();
         currentMenu.chooseAction();
     }
