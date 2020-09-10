@@ -1,7 +1,6 @@
 package com.twu.action;
 
 import com.twu.Session;
-import com.twu.TrendBoard;
 
 public class PrintAction implements Action {
     private static final String name = "查看热搜排行榜";
@@ -17,7 +16,7 @@ public class PrintAction implements Action {
 
     @Override
     public boolean execute() {
-        System.out.println(session.getTrendBoard().display());
+        System.out.print(session.getTrendBoard().display());
         return true;
     }
 }

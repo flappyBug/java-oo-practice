@@ -1,7 +1,6 @@
 package com.twu;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class TrendBoard {
     private final Map<String, Trend> trends = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
@@ -52,7 +51,19 @@ public class TrendBoard {
     }
 
     public String display() {
-        return getRankedTrends().stream().map(Trend::display).collect(Collectors.joining("\n"));
+        if (trends.isEmpty()) {
+            return "排行榜为空\n";
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("排名\t事件\t热度\n");
+        List<Trend> rankedTrends = getRankedTrends();
+        for (int i = 0; i < rankedTrends.size(); i++) {
+            stringBuilder.append(i + 1)
+                    .append('\t')
+                    .append(rankedTrends.get(i).display())
+                    .append('\n');
+        }
+        return stringBuilder.toString();
     }
 
     public Trend getTrendByName(String name) {
